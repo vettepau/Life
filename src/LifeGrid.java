@@ -31,6 +31,6 @@ public class LifeGrid
     }
 
     public void next() {
-        
+        System.out.println("LifeGrid.next");
     }
 }
