@@ -1,8 +1,8 @@
 public class LifeGrid
 {
-    private boolean grid[][];
+    private boolean[][] grid;
 
-    public LifeGrid(int w, int h) {
+    LifeGrid(int w, int h) {
         grid = new boolean[h][w];
     }
 
