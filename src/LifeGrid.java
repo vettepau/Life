@@ -33,19 +33,19 @@ public abstract class LifeGrid
         return out;
     }
 
-    public int rows(){
+    int rows(){
         return grid.length - 2;
     }
 
-    public int cols(){
+    int cols(){
         return grid[0].length - 2;
     }
 
-    public void place(int row, int col) {
+    void place(int row, int col) {
         grid[row+1][col+1] = true;
     }
 
-    public void start(){
+    void start(){
         timer = new Timer();
         int intervalMS = 1000;
         LifeGrid lg = this;
@@ -58,13 +58,11 @@ public abstract class LifeGrid
         timer.scheduleAtFixedRate(tt,0,intervalMS);
     }
 
-    protected abstract void update();
-
-    public void stop(){
+    void stop(){
         timer.cancel();
     }
 
-    public void next() {
+    void next() {
         boolean[][] tempGrid = new boolean[rows()+2][cols()+2];
 
         for(int row = 1; row <= rows(); row++){
@@ -83,7 +81,6 @@ public abstract class LifeGrid
             }
         }
         grid = tempGrid;
-        update();
     }
 
     private int numNeighbors(int row, int col){

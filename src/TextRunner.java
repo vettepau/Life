@@ -7,7 +7,8 @@ public class TextRunner extends LifeGrid{
     }
 
     @Override
-    protected void update() {
+    protected void next() {
+        super.next();
         System.out.println(this);
     }
 
