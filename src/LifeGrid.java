@@ -1,9 +1,14 @@
-public class LifeGrid
+import java.util.Timer;
+import java.util.TimerTask;
+
+public abstract class LifeGrid
 {
     private boolean[][] grid;
+    Timer timer;
 
     LifeGrid(int w, int h) {
         grid = new boolean[h+2][w+2];
+        timer = new Timer();
     }
 
     @Override
@@ -40,6 +45,24 @@ public class LifeGrid
         grid[row+1][col+1] = true;
     }
 
+    public void start(){
+        timer = new Timer();
+        int intervalMS = 1000;
+        LifeGrid lg = this;
+        TimerTask tt = new TimerTask() {
+            @Override
+            public void run() {
+                next();
+            }
+        };
+        timer.scheduleAtFixedRate(tt,0,intervalMS);
+    }
+
+    protected abstract void update();
+
+    public void stop(){
+        timer.cancel();
+    }
 
     public void next() {
         boolean[][] tempGrid = new boolean[rows()+2][cols()+2];
@@ -60,6 +83,7 @@ public class LifeGrid
             }
         }
         grid = tempGrid;
+        update();
     }
 
     private int numNeighbors(int row, int col){

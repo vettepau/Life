@@ -1,7 +1,18 @@
-public class TextRunner {
+import java.util.Scanner;
+
+public class TextRunner extends LifeGrid{
+
+    TextRunner(int w, int h) {
+        super(w, h);
+    }
+
+    @Override
+    protected void update() {
+        System.out.println(this);
+    }
 
     public static void main(String[] args) {
-        LifeGrid lg = new LifeGrid(15,10);
+        LifeGrid lg = new TextRunner(15,10);
 
         lg.place(2,1);
         lg.place(2,2);
@@ -13,8 +24,20 @@ public class TextRunner {
         lg.place(0,7);
         lg.place(0,8);
 
-        System.out.println(lg);
-        lg.next();
-        System.out.println(lg);
+        Scanner scan = new Scanner(System.in);
+
+        while (true)
+        {
+            System.out.println("Enter a command: ");
+            String command = scan.next().toLowerCase();
+            if(command.equals("start"))
+                lg.start();
+            else if (command.equals("stop"))
+                lg.stop();
+            else
+                System.out.println("Command not recognized.");
+        }
     }
+
+
 }
