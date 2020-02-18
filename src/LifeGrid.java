@@ -8,24 +8,15 @@ public class LifeGrid
 
     @Override
     public String toString() {
-        String out = "";
-        boolean a = true;
-        for(boolean[] row: grid){
-            if(a){
-                a = false;
-                continue;
+        StringBuilder out = new StringBuilder();
+
+        for(int r = 1; r < grid.length-1; r++){
+            for(int c = 1; c < grid.length - 1; c++){
+                out.append("[").append(grid[r][c] ? "X" : " ").append("]");
             }
-            boolean b = true;
-            for(boolean cell: row){
-                if(b){
-                    b = false;
-                    continue;
-                }
-                out += "[" + (cell?"X":" ") + "]";
-            }
-            out += "\n";
+            out.append("\n");
         }
-        return out;
+        return out.toString();
     }
 
     int rows(){
@@ -74,7 +65,7 @@ public class LifeGrid
         return count;
     }
 
-    public boolean get(int row, int col){
+    boolean get(int row, int col){
         return grid[row+1][col+1];
     }
 }

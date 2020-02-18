@@ -1,8 +1,6 @@
-import java.util.Scanner;
-
 public class TextRunner extends LifeGrid{
 
-    TextRunner(int w, int h) {
+    private TextRunner(int w, int h) {
         super(w, h);
     }
 
@@ -24,8 +22,6 @@ public class TextRunner extends LifeGrid{
         lg.change(0,6);
         lg.change(0,7);
         lg.change(0,8);
-
-        Scanner scan = new Scanner(System.in);
     }
 
 

@@ -2,21 +2,16 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.beans.property.DoubleProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.awt.*;
 
 public class FXRunner extends Application {
 
@@ -71,31 +66,18 @@ public class FXRunner extends Application {
 
 
         Button startBtn = new Button("Start");
-        startBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                timeline.play();
-            }
-        });
+        startBtn.setOnAction(event -> timeline.play());
         Button stopBtn = new Button("Stop");
 
-        stopBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                timeline.stop();
-            }
-        });
+        stopBtn.setOnAction(event -> timeline.stop());
         Button nextBtn = new Button("Next");
 
-        nextBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                lg.next();
-                update();
-            }
+        nextBtn.setOnAction(event -> {
+            lg.next();
+            update();
         });
 
-        final int size = (int) width/lg.cols()-1;
+        final int size = width/lg.cols()-1;
 
         for(int i = 0; i < lg.rows(); i++) {
             for (int j = 0; j < lg.cols(); j++) {
@@ -151,8 +133,6 @@ public class FXRunner extends Application {
         int index = 0;
         for(int i = 0; i < lg.rows(); i++) {
             for (int j = 0; j < lg.cols(); j++) {
-                String text = " ";
-
                 Button b = (Button) grid.getChildren().get(index++);
                 if (lg.get(i, j))
                     b.setStyle("-fx-background-color: #00ff00");
