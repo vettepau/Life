@@ -18,6 +18,7 @@ public class TextRunner {
             System.out.println("0: exit");
             System.out.println("1: change");
             System.out.println("2: next");
+            System.out.println("3: back");
             int option = scan.nextInt();
             if(option == 0)
                 break;
@@ -29,6 +30,9 @@ public class TextRunner {
                 lg.change(row,col);
             } else if (option == 2) {
                 lg.next();
+            }
+            else if (option == 3) {
+                lg.back();
             }
         }
         System.out.println("Goodbye.");

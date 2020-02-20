@@ -1,6 +1,11 @@
+import java.util.ArrayList;
+
 public class LifeGrid
 {
     private boolean[][] grid;
+    private boolean[][] backup;
+    private ArrayList<boolean[][]> backups= new ArrayList<boolean[][]>();
+    private int backupCount = -1;
 
     LifeGrid(int w, int h) {
         grid = new boolean[h][w];
@@ -49,6 +54,9 @@ public class LifeGrid
                 }
             }
         }
+        backup = grid;
+        backups.add(backup);
+        backupCount++;
         grid = tempGrid;
     }
 
@@ -76,6 +84,17 @@ public class LifeGrid
                 if(get(i,j))
                     change(i,j);
             }
+        }
+    }
+
+    public void back() {
+        if(backupCount >= 0){
+            grid = backups.get(backupCount);
+            backups.remove(backupCount);
+            backupCount--;
+        }
+        else{
+            System.out.println("you can no longer back up");
         }
     }
 }
