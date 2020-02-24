@@ -82,6 +82,11 @@ public class FXRunner extends Application {
             lg.clearBoard(); update();
         });
 
+        Button backBtn = new Button("Undo");
+        backBtn.setOnAction(e -> {
+            lg.back(); update();
+        });
+
         final int size = width/lg.cols()-1;
 
         for(int i = 0; i < lg.rows(); i++) {
@@ -113,6 +118,7 @@ public class FXRunner extends Application {
         buttons.getChildren().add(stopBtn);
         buttons.getChildren().add(nextBtn);
         buttons.getChildren().add(clearBtn);
+        buttons.getChildren().add(backBtn);
 
         buttons.setHgap(10);
 
